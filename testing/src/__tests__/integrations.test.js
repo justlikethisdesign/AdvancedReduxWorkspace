@@ -32,6 +32,7 @@ it('can fetch a list of comments and display them', (done) => {
         // Expect to find a list of comments - LIs
         expect(wrapped.find('li').length).toEqual(2);
         done();
+        wrapped.unmount();
     }, 100);
 
 });
