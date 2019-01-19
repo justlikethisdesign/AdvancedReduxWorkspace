@@ -28,6 +28,7 @@ it('can fetch a list of comments and display them', (done) => {
     wrapped.find('.fetch-comments').simulate('click');
 
     setTimeout(() => {
+        wrapped.update();
         // Expect to find a list of comments - LIs
         expect(wrapped.find('li').length).toEqual(2);
         done();
