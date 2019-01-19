@@ -17,6 +17,7 @@ it('has a text area and button', () => {
     expect(wrapped.find('button').length).toEqual(1);
 });
 
+
 describe('the text area', () => {
 
     const comment = 'new comment';
