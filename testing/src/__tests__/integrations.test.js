@@ -17,22 +17,20 @@ afterEach(() => {
 });
 
 it('can fetch a list of comments and display them', (done) => {
-    // Attempt to render entire app
+
     const wrapped = mount(
         <Root>
             <App />
         </Root>
     );
 
-    // Find 'fetchComments' button - click it
     wrapped.find('.fetch-comments').simulate('click');
 
-    setTimeout(() => {
+    moxios.wait(() =>
         wrapped.update();
-        // Expect to find a list of comments - LIs
         expect(wrapped.find('li').length).toEqual(2);
         done();
         wrapped.unmount();
-    }, 100);
+    });
 
 });
