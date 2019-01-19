@@ -2,9 +2,7 @@ import commentsReducer from 'reducers/comments';
 import { SAVE_COMMENT } from 'actions/types';
 
 it('handles actions of type SAVE_COMMENT', () => {
-
     const comment = 'New Comment';
-
     const action = {
         type: SAVE_COMMENT,
         payload:comment
@@ -12,5 +10,10 @@ it('handles actions of type SAVE_COMMENT', () => {
 
     const newState = commentsReducer([], action);
 
-    expect(newState).toEqual([comment])    
+    expect(newState).toEqual([comment])
+});
+
+if('handles action with unknown type', () => {
+    const newState = commentsReducer([], { type: 'LSDDDEJAS' });
+    expect(newState).toEqual([]);
 });
