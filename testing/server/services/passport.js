@@ -19,9 +19,17 @@ const localLogin = new LocalStrategy({ localOptions }, function(email, password,
         if (!user) { return done(null, false); }
 
         // Compare passwords - is password equal to user.password
-        
+
     })
 });
+
+userSchema.methods.comparePassword = function(candidatePassword, callback) {
+    bcrypt.compare(candidate.Password, this.password, function(err, isMatch){
+        if (err) { return callback(err); }
+
+        callback(null, isMatch);
+    })
+}
 
 // Setup options for JWT strategy
 const jwtOptions = {
