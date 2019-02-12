@@ -4,6 +4,11 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 const router = require('./router');
+const mongoose = require('mongoose');
+
+// DB setup
+mongoose.connect('mongodb://localhost:27017/auth', { useNewUrlParser: true });
+
 // App setup
 
 // Setup express middleware
