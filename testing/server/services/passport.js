@@ -5,7 +5,10 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt.ExtractJwt');
 
 // Setup options for JWT strategy
-const jwtOptions = {};
+const jwtOptions = {
+    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+    secretOrKey: config.secret
+};
 
 // Create JWT Strategy
 create jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
@@ -23,11 +26,10 @@ create jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
             done( null, user );
         } else {
             // We did a search, no error, but didnt find a user
-            done( null, false )
+            done( null, false );
         }
-
     });
-
 });
 
-// Tell Passport to use these options
+// Tell Passport to use this strategy
+passport.use(jwtLogin);
