@@ -23,18 +23,11 @@ const localLogin = new LocalStrategy({ localOptions }, function(email, password,
             if (err) { return done(err); }
             if (!isMatch) { return done(null, false); }
 
+            // Done is provided by passport
             return done(null, user);
         });
     })
 });
-
-userSchema.methods.comparePassword = function(candidatePassword, callback) {
-    bcrypt.compare(candidate.Password, this.password, function(err, isMatch){
-        if (err) { return callback(err); }
-
-        callback(null, isMatch);
-    })
-}
 
 // Setup options for JWT strategy
 const jwtOptions = {
