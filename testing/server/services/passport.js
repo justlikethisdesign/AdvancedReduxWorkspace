@@ -18,8 +18,13 @@ const localLogin = new LocalStrategy({ localOptions }, function(email, password,
         // user was not found
         if (!user) { return done(null, false); }
 
-        // Compare passwords - is password equal to user.password
+        // Compare passwords - is password equal to user.password?
+        user.comparePassword(password, function(err, isMatch) {
+            if (err) { return done(err); }
+            if (!isMatch) { return done(null, false); }
 
+            return done(null, user);
+        });
     })
 });
 
