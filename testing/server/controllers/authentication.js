@@ -4,13 +4,13 @@ const config = require('../config');
 
 // Create a JWT from the user ID and current time
 // more info: jwt.io
-function tokenForUser(user){
+function tokenForUser(user) {
     const timestamp = new Date().getTime();
     return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 }
 
 exports.signin = function(req, res, next) {
-    // User has already had their email and password authd
+    // User has already had their email and password auth'd
     // We just need to give them a token
     res.send({ token: tokenForUser(req.user) });
 }
